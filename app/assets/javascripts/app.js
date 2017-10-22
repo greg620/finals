@@ -4,6 +4,8 @@
 
     $('a[data-method="delete"]').click(function(e) {
         e.preventDefault();
+        confirms = $(this).data('confirm');
+        $('p.content').html(confirms);
         modal.style.display = 'block';
         var data_url = $('a.btn-delete').attr('href');
         $('a.data-url').attr('href', data_url);

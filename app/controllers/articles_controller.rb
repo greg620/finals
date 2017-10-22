@@ -1,11 +1,11 @@
 class ArticlesController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts = Post.where(published: 1)
   end
 
   def show
-    @post = Post.friendly.find(params[:id])
+    @post = Post.friendly.where(published: 1).find(params[:id])
     if current_user
       @like = Like.where(post_id: @post.id, user_id: current_user.id, commentable: :post).first
     end

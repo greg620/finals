@@ -13,7 +13,11 @@
         <td><%= link_to draft.title, article_path(draft) %></td>
         <td>
           <%= link_to 'Editer', edit_draft_path(draft.id) %> -
-          <%= link_to 'Publier', publish_draft_path(draft.id) %> -
+          <% if draft.published != 1 %>
+              <%= link_to 'Publier', publish_draft_path(draft.id) %> -
+          <% else %>
+              <%= link_to 'Retirer l\'article', unpublish_draft_path(draft.id), method: :delete, data: {confirm: "Êtes vous sûr de vouloir retirer l'article ?"} %> -
+          <% end %>
           <%= link_to 'Supprimer', dra_path(draft.id), method: :delete, data: {confirm: 'Are you sûre?'}, :class => 'btn-delete' %>
         </td>
       </tr>
@@ -25,7 +29,7 @@
 <div class="modals" id="modal">
   <div class="modals__content">
     <header>
-      <h2>Vous êtes sur ?</h2>
+      <p class="content"></p>
     </header>
     <div class="pull-left">
       <a href="#" class="btn btn-success data-url">Oui</a>

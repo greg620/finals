@@ -282,13 +282,12 @@ body {
 
 .form-control {
   border-radius: 0;
-  border: 1px solid #bbbbbb;
-  border-bottom: 2px solid #bbbbbb;
+  border: none;
+  border-bottom: 2px solid #c9c9c9;
   height: 44px;
   &:focus {
     box-shadow: none;
-    border-color: #bbbbbb;
-    border-bottom-color: #333;
+    border-bottom-color: #969696;
   }
 }
 

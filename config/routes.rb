@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     patch '/:id/edit', to: 'posts#update_draft'
 
     get '/:id/publish', to: 'posts#publish', as: :publish_draft
+    get '/:id/unpublish', to: 'posts#unpublish', as: :unpublish_draft
   end
   # Supression des brouillon
   get '/drafts/:id', to: 'drafts#destroy', as: :dra
