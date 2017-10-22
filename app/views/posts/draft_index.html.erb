@@ -1,0 +1,37 @@
+<h2>Mes articles</h2>
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th style="line-height: 28px;">Titre</th>
+    <th><%= link_to 'Ajouter un article', draft_new_path, class: 'btn btn-sm btn-primary' %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @draft.each do |draft| %>
+      <tr>
+        <td><%= link_to draft.title, article_path(draft) %></td>
+        <td>
+          <%= link_to 'Editer', edit_draft_path(draft.id) %> -
+          <%= link_to 'Publier', publish_draft_path(draft.id) %> -
+          <%= link_to 'Supprimer', dra_path(draft.id), method: :delete, data: {confirm: 'Are you sûre?'}, :class => 'btn-delete' %>
+        </td>
+      </tr>
+  <% end %>
+  </tr>
+  </tbody>
+</table>
+
+<div class="modals" id="modal">
+  <div class="modals__content">
+    <header>
+      <h2>Vous êtes sur ?</h2>
+    </header>
+    <div class="pull-left">
+      <a href="#" class="btn btn-success data-url">Oui</a>
+    </div>
+    <div class="pull-right">
+      <a href="#" class="btn btn-danger btn-close">Non</a>
+    </div>
+  </div>
+</div>

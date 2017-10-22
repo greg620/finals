@@ -1,0 +1,78 @@
+<div class="post">
+  <article>
+    <h2><%= @post.title %></h2>
+    <div class="list">
+    <span class="author">
+      <%= link_to view_user_path(@post.user.id) do %>
+          <i class="glyphicon glyphicon-user"></i>
+          <%= @post.user.username %>
+      <% end %>
+    </span>
+      <span class="like">
+      <span class="count" title="<%= @post.likes.count %> personne aime l'article">
+        <i class="glyphicon glyphicon-thumbs-up"></i>
+        <%= @post.likes.count %>
+      </span>
+        <% if current_user %>
+        <% if @like %>
+          <%= link_to unlikes_path(@like.id, @post.id) do %>
+              Je n'aime plus
+          <% end %>
+        <% else %>
+          <%= link_to likes_path(@post.id, current_user.id) do %>
+            J'aime
+          <% end %>
+        <% end %>
+      <% end %>
+    </span>
+    </div>
+    <div class="content">
+      <%= @post.content %>
+    </div>
+  </article>
+  <div class="post-form">
+    <h4>
+      <%= @post.comments.count %> Commentaire<% if @post.comments.count > 1 %>s<% end %>
+    </h4>
+
+    <% if @comment.errors.any? %>
+        <div class="alert alert-danger">
+          <% @comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+          <% end %>
+        </div>
+    <% end %>
+
+    <div id="forms">
+      <%= form_for @comment, url: new_comment_path(@post) do |f| %>
+          <span class="cancel"><a href="#" id="cancel"></a></span>
+          <% if current_user.nil? %>
+              <div class="form-group">
+                <%= f.label :username, "Pseudo" %>
+                <%= f.text_field :username, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :email, "Email" %>
+                <%= f.text_field :email, class: 'form-control' %>
+              </div>
+          <% end %>
+          <div class="form-group">
+            <%= f.label :content, "Contenu" %>
+            <%= f.text_area :content, class: 'form-control' %>
+          </div>
+          <%= f.hidden_field :parent_id %>
+          <div class="form-group">
+            <%= f.submit 'Envoyer', class: 'btn btn-primary' %>
+          </div>
+      <% end %>
+    </div>
+    <div class="comment-list">
+      <% @comments.each do |comment| %>
+          <%= render 'comment', comment: comment, post: @post %>
+          <% Comment.where(post_id: @post.id, parent_id: comment.id).each do |rep| %>
+              <%= render 'reply', reply: rep %>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

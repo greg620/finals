@@ -1,0 +1,18 @@
+<div>
+  <h2>Blog</h2>
+</div>
+<div>
+  <%= link_to 'Ajouter un article', draft_new_path, class: 'btn btn-primary' %>
+</div>
+
+<div class="blog">
+  <% @posts.each do |post| %>
+      <div class="col-sm-3">
+        <article class="article">
+          <header>
+            <span class="title"><%= link_to post.title, article_path(post) %></span>
+          </header>
+        </article>
+      </div>
+  <% end %>
+</div>

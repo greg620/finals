@@ -1,0 +1,17 @@
+<%= form_for tutoriel, url: url do |f| %>
+    <div class="input">
+      <%= f.label :title, "Titre" %>
+      <%= f.text_field :title, class: 'text' %>
+    </div>
+    <div class="input">
+      <%= f.label :title, 'Catégorie' %>
+      <%= f.collection_select(:category_id, Category.all, :id, :title) %>
+    </div>
+    <div class="input">
+      <%= f.label :content, "Contenu" %>
+      <%= f.text_area :content, class: 'text' %>
+    </div>
+    <div class="input">
+      <%= f.submit %>
+    </div>
+<% end %>

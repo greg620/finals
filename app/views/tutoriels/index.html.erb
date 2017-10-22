@@ -1,0 +1,29 @@
+<h2>Tutoriels</h2>
+
+<div class="row">
+  <% @tutoriels.each do |tuto| %>
+      <div class="col-sm-4">
+        <div class="tutoriel">
+          <div class="thumb">
+            <%= image_tag 'tutoriels/377_236x144.jpg' %>
+          </div>
+          <div class="description">
+            <span class="title"><%= tuto.title %></span>
+            <div class="content">
+              <%= truncate(tuto.content, length: 150) %>
+            </div>
+          </div>
+          <div class="footer">
+            <span class="category">
+              <i class="glyphicon glyphicon-tag"></i>
+              <%= tuto.category.title %>
+            </span>
+            <span class="author">
+              <i class="glyphicon glyphicon-user"></i>
+              <%= tuto.user.username %>
+            </span>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>

@@ -1,0 +1,30 @@
+<%= content_for :mdeditor_css do %>
+    <%= stylesheet_link_tag 'mdeditor' %>
+<% end %>
+<%= content_for :mdeditor_js do %>
+    <%= javascript_include_tag 'mdeditor.min' %>
+    <script>
+        new MdEditor('#post_content', {
+            preview: false,
+            flash: function(message, type) {
+                new Flash(message, type)
+            }
+        });
+    </script>
+<% end %>
+
+<h2>Editer l'article</h2>
+
+<%= form_for @post, url: admin_article_path do |f| %>
+    <div class="input">
+      <%= f.label :title, "Titre" %>
+      <%= f.text_field :title, class: 'text' %>
+    </div>
+    <div class="input">
+      <%= f.label :content, "Contenu" %>
+      <%= f.text_area :content %>
+    </div>
+    <div class="input">
+      <%= f.submit 'Mettre à jour' %>
+    </div>
+<% end %>

@@ -1,0 +1,13 @@
+<div class="comment" id="<%= comment.id %>">
+  <div class="avatar">
+    <img src="https://www.grafikart.fr/uploads/avatars/110/109584.jpg">
+  </div>
+  <div class="right">
+    <div class="author">
+      <%= comment.username %> - <%= link_to 'Répondre', '#', class: 'reply', data: {id: comment.id} %> -
+    </div>
+    <div class="content" id="comment_content">
+      <%= comment.content %>
+    </div>
+  </div>
+</div>

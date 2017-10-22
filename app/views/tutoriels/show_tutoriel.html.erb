@@ -1,0 +1,21 @@
+<ol class="breadcrumb">
+  <li>
+    <%= link_to 'Accueil', root_path %>
+  </li>
+  <li>
+    <%= link_to 'Tutoriel', tutoriels_path %>
+  </li>
+  <li>
+    <%= link_to @tutoriel.category.title, category_view_path(@tutoriel.category.slug) %>
+  </li>
+  <li class="active"><%= @tutoriel.title %></li>
+</ol>
+<article class="tutoriel_view">
+  <h2><%= @tutoriel.title %></h2>
+  <span class="time">
+    <%= time_ago_in_words(@tutoriel.created_at)%>
+  </span>
+  <span class="author">
+    <%= @tutoriel.user.username %>
+  </span>
+</article>

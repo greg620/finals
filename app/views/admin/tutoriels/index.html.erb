@@ -1,0 +1,22 @@
+<h2>Tutoriels</h2>
+<%= link_to 'Ajouter un tutoriel', new_admin_tutoriel_path, {class: 'btn'} %>
+<table style="margin-top: 15px;">
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tutoriels.each do |tutoriel| %>
+      <tr>
+        <td><%= tutoriel.title %></td>
+        <td>
+          <%= link_to 'Editer', edit_admin_tutoriel_path(tutoriel.id) %> -
+          <%= link_to 'Voir', show_tuto_path(tutoriel.category.slug, tutoriel.slug) %> -
+          <%= link_to 'Supprimer', admin_tutoriel_path(tutoriel.id) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

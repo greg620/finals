@@ -1,0 +1,26 @@
+<h2>Articles</h2>
+<p></p>
+<table>
+  <thead>
+  <tr>
+    <th>Titre</th>
+    <th>Auteur</th>
+    <th>Nombre de j'aime</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.user.username %></td>
+        <td style="text-align: center;"><%= post.likes.count %></td>
+        <td>
+          <%= link_to 'Editer', edit_admin_article_path(post.id) %> -
+          <%= link_to 'Voir', article_path(post) %> -
+          <%= link_to 'Supprimer', admin_article_path(post.id), method: :delete, data: {confirm: "Vous êtes sûr ?"} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

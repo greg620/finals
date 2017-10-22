@@ -1,0 +1,27 @@
+<h2>Editer mon compte</h2>
+
+<% if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </div>
+<% end %>
+
+<%= form_for @user, url: edit_user_path do |f| %>
+    <div class="form-group">
+      <%= f.label :email, "Email" %>
+      <%= f.text_field :email, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :firstname, "Prénom" %>
+      <%= f.text_field :firstname, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :lastname, "Nom" %>
+      <%= f.text_field :lastname, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit 'Mettre à jour' %>
+    </div>
+<% end %>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Finals</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'bootstrap', 'app' %>
+    <%= yield(:mdeditor_css) %>
+  </head>
+
+  <body>
+  <div class="navbar navbar-static-top navbar-inverse" id="topbar">
+    <div class="container">
+      <div class="navbar-header">
+        <%= link_to 'Finals', root_path, class: 'navbar-brand' %>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Accueil', root_path %></li>
+        <li><%= link_to 'Blog', articles_path %></li>
+        <li><%= link_to 'Tutoriels', tutoriels_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              Bonjour, <%= current_user.username; %>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <% if current_user.role == 'admin' %>
+                <li>
+                  <a href="<%= url_for admin_index_path %>">
+                    <i class="glyphicon glyphicon-dashboard"></i>
+                    Administration
+                  </a>
+                </li>
+              <% end %>
+              <li>
+                <a href="<%= url_for profil_path %>">
+                  <i class="glyphicon glyphicon-user"></i>
+                  Mon compte
+                </a>
+              </li>
+              <li>
+                <a href="<%= url_for draft_index_path %>">
+                  <i class="glyphicon glyphicon-inbox"></i>
+                  Mes articles
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li><a href="<%= url_for logout_session_path %>">
+                <i class="glyphicon glyphicon-log-out"></i>
+                Se déconnecter
+              </a></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "S'inscrire", new_user_path %></li>
+          <li><%= link_to "Se connecter", new_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+    <div class="container" id="container">
+      <% if flash[:success] %>
+        <div class="alert alert-success">
+          <%= flash[:success] %>
+        </div>
+      <% end %>
+      <% if flash[:error] %>
+        <div class="alert alert-danger">
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <%= javascript_include_tag 'bootstrap', 'app', 'drafts' %>
+  <%= yield(:mdeditor_js) %>
+  </body>
+</html>

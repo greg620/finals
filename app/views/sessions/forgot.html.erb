@@ -1,0 +1,18 @@
+<h2>Mot de passe oublié</h2>
+
+<%= form_for :user, url: forgot_path do |f| %>
+    <div class="form-group">
+      <%= f.label :email, "Email" %>
+      <%= f.text_field :email, {class: 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :secret, "Question secrète" %>
+      <%= f.text_field :secret, {class: 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">
+        Suivant
+        <i class="glyphicon glyphicon-arrow-right"></i>
+      </button>
+    </div>
+<% end %>

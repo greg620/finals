@@ -1,0 +1,21 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Accueil', root_path %></li>
+  <li class="active">Mon compte</li>
+  <li class="pull-right">
+    <%= link_to 'Editer mon compte', edit_user_path %>
+  </li>
+</ol>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h2>Mon compte</h2>
+  </div>
+  <div class="col-sm-6">
+    <h2>Article que j'aime</h2>
+    <ul>
+      <% @like.each do |like| %>
+        <li><%= link_to like.post.title, article_path(like.post) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Administration</title>
+  <%= stylesheet_link_tag 'admin', 'ionicons' %>
+  <%= yield(:mdeditor_css) %>
+</head>
+<body>
+<header class="header">
+  <div class="logo">
+    <i class="ion-code-working"></i>
+    <p>
+      Admin
+      <string>Istration</string>
+    </p>
+  </div>
+  <div class="header-content" id="head-content">
+    <div class="breadcrumb" id="breadcrumb">
+      <div class="br-content">
+        <span class="home">
+          <%= link_to 'Administration', admin_index_path %>
+        </span>
+      </div>
+    </div>
+    <div class="search-form"></div>
+    <div class="account" id="account">
+      <%= image_tag 'https://www.myrouteapp.com/images/icons/default-avatar.png' %>
+      <i class="ion-chevron-down"></i>
+    </div>
+    <div class="topmenu hide" id="topbar-menu">
+      <%= link_to root_path do %>
+        <i class="ion-link"></i>
+        Voir le site
+      <% end %>
+    </div>
+  </div>
+</header>
+<div class="nav-button-responsive" id="nav-button-responsive">
+  <i class="ion-navicon-round"></i>
+</div>
+<div class="nav" id="nav">
+  <div class="menu">
+    <%= link_to admin_index_path do %>
+        <i class="ion-home"></i> <span>Administration</span>
+    <% end %>
+    <%= link_to admin_articles_path do %>
+        <i class="ion-document"></i> <span>Articles</span>
+    <% end %>
+    <%= link_to admin_tutoriels_path do %>
+        <i class="ion-code-working"></i> <span>Tutoriels</span>
+    <% end %>
+  </div>
+</div>
+<div class="content">
+  <%= yield %>
+</div>
+<div class="footer"></div>
+<%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js', 'admin', 'app' %>
+<%= yield(:mdeditor_js) %>
+</body>
+</html>

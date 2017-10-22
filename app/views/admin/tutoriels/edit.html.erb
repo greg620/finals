@@ -1,0 +1,9 @@
+<h2>Editer le tutoriel</h2>
+<% if @tutoriel.errors.any? %>
+    <div class="notif error">
+      <% @tutoriel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </div>
+<% end %>
+<%= render 'form', tutoriel: @tutoriel, url: admin_tutoriel_path %>
